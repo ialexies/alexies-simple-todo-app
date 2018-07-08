@@ -11,9 +11,10 @@
 </head>
 <body>
   @if(Session::has('success'))
+
     <script>
-      swal("{{Session::get('success')}}", "You clicked the button!", "success");
-  
+      swal("{{Session::get('success')[0]}}", "{{Session::get('success')[1]}}", "success");
+  $not_success
     </script>
   @endif()
 

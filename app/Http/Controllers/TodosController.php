@@ -25,8 +25,9 @@ class TodosController extends Controller
 
         $todo->save();
         
-
-        session::flash('success', 'Your todo was created.');
+        $not_success=array("Created", "Your Todo Task was Created");
+        session::flash('success', $not_success);
+        
         return redirect()->back();
 
         // echo "fdf";
@@ -38,7 +39,8 @@ class TodosController extends Controller
         $todo=  Todo::find($id);
         $todo->delete();
 
-        session::flash('success', 'Your todo was deleted.');
+        $not_success=array("Deleted", "Your Todo Task was Deleted");
+        session::flash('success', $not_success);
         return redirect()->back();
     }
 
@@ -53,7 +55,8 @@ class TodosController extends Controller
         $todo=Todo::find($id);
         $todo->todo=$request->todo;
         $todo->save();
-        session::flash('success', 'Your todo was updated.');
+        $not_success=array("Updated", "Your Todo Task was Updated");
+        session::flash('success', $not_success);
         return redirect()->route('todo.index');
     }
 
@@ -61,7 +64,8 @@ class TodosController extends Controller
         $todo=Todo::find($id); 
         $todo->completed=1;
         $todo->save();
-        session::flash('success', 'Your todo was marked as completed.');
+        $not_success=array("Created", "Your Todo Task was marked as Completed");
+        session::flash('success', $not_success);
         return redirect()->back();
     }
     
@@ -69,6 +73,8 @@ class TodosController extends Controller
         $todo=Todo::find($id); 
         $todo->completed=0;
         $todo->save();
+        $not_success=array("Created", "Your Todo Task was marked as Pending");
+        session::flash('success', $not_success);
         return redirect()->back();
     }
 
