@@ -7,25 +7,29 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" >
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
   <title>Document</title>
 </head>
 <body>
-  @if(Session::has('success'))
 
-    <script>
-      swal("{{Session::get('success')[0]}}", "{{Session::get('success')[1]}}", "success");
-  $not_success
-    </script>
-  @endif()
+{{session(['user_details' => array("Alexies Iglesia", "ialexies@gmail.com",  \Request::ip())])}}
 
-  @yield('top_content')
-  <div class="container">
-    
-    @yield('content')
-  
+<div class="container center text-center topbar" >{{Session::get('user_details')[2]}}</div>
 
-  </div>
+  @if(Session::has('user_details'))
 
+    @if(Session::has('success'))
+      <script>
+        swal("{{Session::get('success')[0]}}", "{{Session::get('success')[1]}}", "success");
+      </script>
+    @endif
+
+    @yield('top_content')
+    <div class="container">
+      @yield('content')
+    </div>
+
+  @endif
 
 </body>
 </html>
