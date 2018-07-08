@@ -45,7 +45,7 @@
           </div>
           <div class="col-md-2 text-right">
             <a href="{{route('todo.update',['id'=>$todo->id])}}" class="btn btn-danger "><i class="material-icons">update</i></a>
-            <a href="{{route('todo.delete',['id'=>$todo->id])}}" class="btn btn-danger "><i class="material-icons">delete_forever</i></a>
+            <a href="#" class="btn btn-danger " onclick="return confirm_delete({{$todo->id}})"><i class="material-icons">delete_forever</i></a>
           </div>
         </div><hr>
       @endforeach
@@ -56,3 +56,5 @@
 
 
 @stop
+
+

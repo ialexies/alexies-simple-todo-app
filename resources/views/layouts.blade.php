@@ -12,12 +12,13 @@
 </head>
 <body>
 
-{{session(['user_details' => array("Alexies Iglesia", "ialexies@gmail.com",  \Request::ip())])}}
 
-<div class="container center text-center topbar" >{{Session::get('user_details')[2]}}</div>
+
+
+  {{ session(['user_details' => array("Alexies Iglesia", "ialexies@gmail.com",  \Request::ip())])}}
 
   @if(Session::has('user_details'))
-
+    <div class="container-fluid center text-center topbar" >{{ Session::get('user_details')[0]}}  |  {{Session::get('user_details')[1]}}  |  {{ Session::get('user_details')[2]}}</div>
     @if(Session::has('success'))
       <script>
         swal("{{Session::get('success')[0]}}", "{{Session::get('success')[1]}}", "success");
@@ -29,7 +30,41 @@
       @yield('content')
     </div>
 
+  @else
+    Hey you dont have any user informations
   @endif
 
+
+  <script>
+
+  function confirm_delete($id){
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        window.location = "/todo/delete/"+$id;
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+
+  }
+
+
+
+  </script>
+
+  
+
+
+  
 </body>
 </html>
